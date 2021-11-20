@@ -5,7 +5,7 @@
 
 // Dependencies
 const axios = require("axios");
-const platforms = ["steam", "xbl", "psn", "origin", "uplay", "battlenet"];
+const platforms = ["steam", "xbl", "psn", "origin", "uplay", "battlenet", "pc"];
 
 /** @constructor */
 class TrackerGG {
@@ -31,7 +31,7 @@ class TrackerGG {
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  csgo = async user => {
+  csgouser = async user => {
     const r = await axios
       .get(`${this.base}/csgo/standard/profile/steam/${user}`, {
         headers: { "TRN-Api-Key": this.api_key },
@@ -45,7 +45,7 @@ class TrackerGG {
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  apex = async (platform, user) => {
+  apexuser = async (platform, user) => {
     if (!platform || !user) return new Error("Missing Arguments");
     if (platforms.includes(platform)) {
       const r = await axios
@@ -63,7 +63,7 @@ class TrackerGG {
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  division = async (platform, user) => {
+  divisionuser = async (platform, user) => {
     if (!platform || !user) return new Error("Missing Arguments");
     if (platforms.includes(platform)) {
       const r = await axios
@@ -75,13 +75,53 @@ class TrackerGG {
     }
     return new Error("Invalid Platform Provided");
   };
+  
+ /**
+ * @param {string} platform - Users platform
+ * @param {string} user - Username
+ * @returns {Promise<Object>}
+ */
+  fortniteuser = async (platform, user) => {
+    if (!platform || !user) return new Error("Missing Arguments");
+    
+    if (platform == "steam" || platform == "origin" || platform == "uplay" || platform == "battlenet") return new Error("Invalid Platform Provided, Platform supported: `pc,xbl,psn`");
+    
+    if (platforms.includes(platform)) {
+      const r = await axios
+        .get(`https://api.fortnitetracker.com/v1/profile/${platform}/${user}`, {
+          headers: { "TRN-Api-Key": this.api_key },
+        })
+        .catch((e) => this.checkError(e));
+      return r.data;
+    }
+    return new Error("Invalid Platform Provided");
+  }; 
+ 
+  
+  fortniteshop = async () => {
+      const r = await axios
+        .get(`https://api.fortnitetracker.com/v1/store`, {
+          headers: { "TRN-Api-Key": this.api_key },
+        })
+        .catch((e) => this.checkError(e));
+      return r.data;
+  };
+  
+  fortnitechallenges = async () => {
+      const r = await axios
+        .get(`https://api.fortnitetracker.com/v1/challenges`, {
+          headers: { "TRN-Api-Key": this.api_key },
+        })
+        .catch((e) => this.checkError(e));
+      return r.data;
+  };
 
 /**
  * @param {string} platform - Users platform
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  overwatch = async (platform, user) => {
+  overwatchuser = async (platform, user) => {
     if (!platform || !user) return new Error("Missing Arguments");
     if (platforms.includes(platform)) {
       const r = await axios
@@ -98,7 +138,7 @@ class TrackerGG {
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  splitgate = async user => {
+  splitgateuser = async user => {
     const r = await axios
       .get(`${this.base}/splitgate/standard/profile/steam/${user}`, {
         headers: { "TRN-Api-Key": this.api_key },
@@ -112,7 +152,7 @@ class TrackerGG {
  * @param {string} user - Username
  * @returns {Promise<Object>}
  */
-  hyperscape = async (platform, user) => {
+  hyperscapeuser = async (platform, user) => {
     if (!platform || !user) return new Error("Missing Arguments");
     if (platforms.includes(platform)) {
       const r = await axios

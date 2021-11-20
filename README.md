@@ -32,6 +32,12 @@ console.log(data);
 
 *  [.hyperscapeuser](#TrackerGG+hyperscape) ⇒ <code>Promise.&lt;Object&gt;</code>
 
+*  [.fortniteuser](#TrackerGG+fortnite) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+*  [.fortniteshop](#TrackerGG+fortniteshop) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+*  [.fortnitechallenges](#TrackerGG+fortnitechallenges) ⇒ <code>Promise.&lt;Object&gt;</code>
+
   
 
 <a  name="TrackerGG+csgo"></a>
@@ -147,3 +153,40 @@ console.log(data);
 | platform | <code>string</code> | Users platform |
 
 | user | <code>string</code> | Username |
+
+
+<a  name="TrackerGG+fortnite"></a>
+
+  
+
+### trackerGG.fortniteuser ⇒ <code>Promise.&lt;Object&gt;</code>
+
+**Kind**: instance property of [<code>TrackerGG</code>](#TrackerGG)
+
+  
+
+| Param | Type | Description |
+
+| --- | --- | --- |
+
+| platform | <code>string</code> | Users platform |
+
+| user | <code>string</code> | Username |
+
+
+<a  name="TrackerGG+fortniteshop"></a>
+
+  
+
+### trackerGG.fortniteshop ⇒ <code>Promise.&lt;Object&gt;</code>
+
+**Kind**: instance property of [<code>TrackerGG</code>](#TrackerGG)
+
+
+<a  name="TrackerGG+fortnitechallenges"></a>
+
+  
+
+### trackerGG.fortnitechallenges ⇒ <code>Promise.&lt;Object&gt;</code>
+
+**Kind**: instance property of [<code>TrackerGG</code>](#TrackerGG)
